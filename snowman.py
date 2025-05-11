@@ -10,9 +10,7 @@ def main():
     while True:
         game_logic.play_game()
         get_user_answer = input("Do you want to play again? y/n: ").lower()
-        if get_user_answer == "y":
-            game_logic.play_game()
-        elif get_user_answer == "n":
+        if get_user_answer == "n":
             break
         else:
             print("Please type y or n")
