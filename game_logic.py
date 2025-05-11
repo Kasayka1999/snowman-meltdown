@@ -1,3 +1,5 @@
+from curses.ascii import isdigit
+
 import snowman
 import ascii_art
 import random
@@ -20,6 +22,17 @@ def display_game_state(mistakes, secret_word, guessed_letters):
     print("Word: ", display_word)
     print("\n")
 
+def get_user_guess():
+    char_alphabet = "abcdefghijklmnopqrstuvwxyz" #Only lowercase because on input we convert to lower()
+    while True:
+        try:
+            guess = input("Guess a letter: ").lower()
+            if len(guess) == 1 and guess in char_alphabet:
+                return guess
+            else:
+                print("Ensure that is only a single alphabetical character")
+        except ValueError:
+            print("Please enter a character")
 
 def play_game():
     secret_word = get_random_word()
@@ -44,7 +57,7 @@ def play_game():
             break
 
         # Prompt user for a guess
-        guess = input("Guess a letter: ").lower()
+        guess = get_user_guess()
 
         # Skip if already guessed
         if guess in guessed_letters:
